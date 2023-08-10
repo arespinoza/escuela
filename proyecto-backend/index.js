@@ -5,7 +5,7 @@ const { mongoose } = require('./database');
 var app = express();
 
 const corsOptions = {
-    origin: ['http://52.7.172.203', 'http://localhost:4200'] // En casos de prueba
+    origin: ['http://52.7.172.203', 'http://localhost:4200', 'https://escuelasavio119.onrender.com'] // En casos de prueba
     //origin: 'http://52.7.172.203'                            // Para entregar completamente la aplicación
   };
 
