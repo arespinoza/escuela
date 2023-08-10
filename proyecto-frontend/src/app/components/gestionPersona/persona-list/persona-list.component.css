@@ -1,0 +1,68 @@
+@media screen and (max-width: 870px) {
+    main{
+        position: relative;
+        min-height: 100vh;
+        padding: initial !important;
+        font-size: 10px !important;
+        margin-bottom: 50px; /* Ajusta el valor según sea necesario */
+        padding-bottom: 1000px !important;
+    }
+    .row{
+        display: block;
+    }
+}
+.titulo{
+    text-align: center;
+    background: #b097669f;
+    font-family: Roboto;
+    
+}
+
+.titulo2{
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    padding-top:10px
+    
+}
+
+
+main{
+    background: #b09766;
+background: linear-gradient(288deg, rgba(176,151,102,0.396796218487395) 0%, rgba(255,255,255,0.6797093837535014) 28%, rgba(255,255,255,0.26514355742296913) 45%, rgba(111,171,234,1) 100%);
+}
+
+/*** ESTILOS BOTÓN GROW SKEW ***/
+.ov-btn-grow-skew {
+    background: #fff; /* color de fondo */
+    color: #6fabea; /* color de fuente */
+    border: 1px solid rgba(111,171,234,1); /* tamaño y color de borde */
+    padding: 10px 20px;
+    border-radius: 10px; /* redondear bordes */
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    display: inline-block;
+}
+.ov-btn-grow-skew:hover {
+    color: #fff;/* color de fuente hover */
+}
+
+.ov-btn-grow-skew::after {
+    content: "";
+    background: #6fabea; /* color de fondo hover */
+    position: absolute;
+    z-index: -1;
+    padding: 16px 20px;
+    display: block;
+    left: -20%;
+    right: -20%;
+    top: 0;
+    bottom: 0;
+    transform: skewX(-45deg) scale(0, 1);
+    transition: all 0.3s ease;
+}
+
+.ov-btn-grow-skew:hover::after {
+    transition: all 0.3s ease-out;
+    transform: skewX(-45deg) scale(1, 1);
+}

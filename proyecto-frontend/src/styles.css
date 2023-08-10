@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.snow.css';
+
+main{
+    height: auto;
+}
+
+.ql-editor{
+    height: 800px;
+}
