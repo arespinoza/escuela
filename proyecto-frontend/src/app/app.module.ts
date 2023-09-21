@@ -34,6 +34,7 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
 import { ListaAreasComponent } from './components/gestion/lista-areas/lista-areas.component';
 import { QuillModule } from 'ngx-quill';
 import { MapaComponent } from './components/mapa/mapa.component';
+import { NgHttpLoaderModule } from 'ng-http-loader'; // <============
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { MapaComponent } from './components/mapa/mapa.component';
 
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
-    
+    NgHttpLoaderModule.forRoot(), // <============ Don't forget to call 'forRoot()'!
+
   ],
  
 
