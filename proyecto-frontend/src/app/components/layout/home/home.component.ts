@@ -75,4 +75,8 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['vista-areas',idArea]);
   }
 
+  cambiarTurno(turno:string){
+    this.turno = turno;
+  }
+
 }

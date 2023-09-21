@@ -21,13 +21,18 @@
 
     <div class="col-md-4">
       <aside class="p-4 aside-cont">
-        <h5>Enlaces útiles</h5> 
+        <h5>PUBLICACIONES POR ÁREA</h5> 
         <div>
-          <label for="turno">Elegir Turno</label> 
+          <label for="turno">Turno?</label> 
+
+          <button class="btn btn-sm btn-light m-1" (click)="cambiarTurno('mañana')" [ngClass]="{'btn-success': turno=='mañana' , 'btn-light': turno!='mañana'}">Mañana</button> 
+          <button class="btn btn-sm btn-light m-1"  (click)="cambiarTurno('tarde')" [ngClass]="{'btn-success': turno=='tarde' , 'btn-light': turno!='tarde'}">&nbsp;  Tarde &nbsp;  </button>
+          <!--
           <select class="form-select" id="turno" name="turno" aria-label="Default select example" [(ngModel)]="turno">
             <option value="mañana" selected>Mañana</option>
             <option value="tarde">Tarde</option>
           </select>
+          -->
         </div>
         <div class="accordion" id="accordionExample">
 
@@ -140,9 +145,10 @@
       <div class="row row-cols-1 row-cols-md-4 g-4">
         <div class="col" *ngFor="let anuncio of anuncionsGenerales">
           <div class="card rounded-5 border-3" style="background-color:rgba(0, 0, 0, 0.308);color: white;height: 300px; ">
-            <div style="height: 140px; background-color: rgba(117, 221, 255, 0.753);" class="rounded-top-5"></div>
-            <div class="card-body">
+            <div style="height: 140px; background-color: rgba(117, 221, 255, 0.753);" class="card-header rounded-top-5">
               <h5 class="card-title">{{anuncio.titulo}}</h5>
+            </div>
+            <div class="card-body">
               <p class="card-text">{{anuncio.descripcionCard}}</p>
               <p>{{anuncio.fechaDesde}}</p>
               <button class="btn btn-anuncio" (click)="verAnuncio(idArea,anuncio._id)">Leer Mas...</button>
