@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
+const Rol = require("./rol");
 
 
 const AnuncioSchema = new Schema({
@@ -13,7 +14,8 @@ const AnuncioSchema = new Schema({
         type:{type: String},
         name:{type: String}
     }],
-    tipo: {type:String}
+    tipo: {type:String},
+    destinatarios: [{ type: Schema.Types.ObjectId, ref: Rol, required: true }],
 
 })
 
