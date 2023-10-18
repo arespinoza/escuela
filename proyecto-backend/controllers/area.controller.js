@@ -5,7 +5,7 @@ const areaCtrl = {}
 areaCtrl.getArea = async (req, res) => {
     //console.log(req.params.id);
     const aarea = await Area.findById(req.params.id)
-    .populate('responsables').populate('anuncios')
+    .populate('responsables')
     res.json(aarea);
     //console.log(aarea);
 }
