@@ -3,7 +3,6 @@ const Anuncio = require('../models/anuncio');
 const areaCtrl = {}
 
 areaCtrl.getArea = async (req, res) => {
-    //console.log(req.params.id);
     const aarea = await Area.findById(req.params.id)
     .populate('responsables')
     res.json(aarea);
