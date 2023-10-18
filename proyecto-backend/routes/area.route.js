@@ -5,7 +5,7 @@ const areaCtrl = require('./../controllers/area.controller');
 const express = require('express');
 const router = express.Router();
 
-//definimos las rutas para la gestion de producto
+//definimos las rutas para la gestion de areas
 router.get('/:id', areaCtrl.getArea);
 router.get('/', areaCtrl.getAreas);
 router.post('/', areaCtrl.createArea);
