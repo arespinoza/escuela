@@ -4,7 +4,7 @@ const anuncioCtrl = {}
 
 anuncioCtrl.getAnuncio = async (req, res) => {
     console.log(req.params.id);
-    const aanuncio = await Anuncio.findById(req.params.id)
+    const aanuncio = await Anuncio.findById(req.params.id).populate("destinatarios");
     res.json(aanuncio);
     console.log(aanuncio);
 }
