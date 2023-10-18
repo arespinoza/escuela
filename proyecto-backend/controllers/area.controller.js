@@ -11,7 +11,7 @@ areaCtrl.getArea = async (req, res) => {
 
 areaCtrl.getAreas = async (req, res) => {
     var aareas = await Area.find().select(['-anuncios'])
-    .populate('responsables').populate({path: 'anuncios', populate: 'destinatarios'})
+    .populate({path: 'anuncios', populate: 'destinatarios'})
     res.json(aareas);
 }
 
