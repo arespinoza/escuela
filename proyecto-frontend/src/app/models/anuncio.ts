@@ -1,4 +1,5 @@
 import { Area } from "./area";
+import { Rol } from "./rol";
 
 export class Anuncio {
     _id!:string;
@@ -9,6 +10,8 @@ export class Anuncio {
     fechaHasta!: string;
     recursos: {base64:string, type:string, name:string}[]=[];
     tipo!:string;
+    destinatarios!:Array<Rol>;
+    
 
     constructor(){
 

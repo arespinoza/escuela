@@ -7,6 +7,8 @@ import { ServiciosAnuncioService } from 'src/app/services/servicios-anuncio.serv
 import { ServiciosAreaService } from 'src/app/services/servicios-area.service';
 import { Toast, ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
+import { Rol } from 'src/app/models/rol';
+import { RolService } from 'src/app/services/rol.service';
 
 @Component({
   selector: 'creacion-noticia',
@@ -35,6 +37,7 @@ export class CreacionNoticiaComponent implements OnInit {
 
   infoArea:Area = new Area();
   personaActual:any;
+  destinatarios:Array<Rol>;
 
   sessionStorage: Storage;
   constructor(private sanitizer: DomSanitizer, 
@@ -42,14 +45,17 @@ export class CreacionNoticiaComponent implements OnInit {
               private activatedRoute: ActivatedRoute, 
               private router: Router, 
               private serviciosArea: ServiciosAreaService,
-              private toast: ToastrService) {
+              private toast: ToastrService,
+              private rolService:RolService) {
 
     this.Anuncio = new Anuncio();
     this.files = [];
+    this.destinatarios = new Array<Rol>();
     this.sessionStorage = sessionStorage;
   }
 
   ngOnInit(): void {
+    this.cargarDestinatarios();
     this.edicion_vista = 'vista';
    this.activatedRoute.params.subscribe(
     params=>{
@@ -87,7 +93,6 @@ export class CreacionNoticiaComponent implements OnInit {
 
     // Get the modified HTML string
     this.Anuncio.descripcion = tempElement.innerHTML;
-    console.log(this.Anuncio.descripcion);
   }
 
   sanitizeHtml(html: string): SafeHtml {
@@ -189,8 +194,12 @@ export class CreacionNoticiaComponent implements OnInit {
     this.servicios.getAnuncio(idArea,idAnuncio).subscribe(
       result=>{
         Object.assign(this.Anuncio, result);
-        console.log(this.Anuncio);
         this.files = result.recursos;
+        console.log(this.Anuncio)
+        //redirijo los destinatarios
+        for (let index = 0; index < this.Anuncio.destinatarios.length; index++) {
+          this.Anuncio.destinatarios[index] =  this.destinatarios.find(r=>(r._id == this.Anuncio.destinatarios[index]._id))!
+        }
       },
       error=>{
         console.log(error);
@@ -269,5 +278,21 @@ export class CreacionNoticiaComponent implements OnInit {
     )
   }
   
-  
+   cargarDestinatarios(){
+    this.destinatarios = new Array<Rol>();
+    let result:any = this.rolService.getRoles().toPromise().then(
+      result=>{
+        let unRol = new Rol();
+        result.forEach((element:any) => {
+          Object.assign(unRol, element);
+          this.destinatarios.push(unRol);
+          unRol = new Rol();
+        });
+      },
+    ).catch(
+      error=>{
+        console.log("Error al obtener las roles.")
+      }
+    )
+  }
 }
