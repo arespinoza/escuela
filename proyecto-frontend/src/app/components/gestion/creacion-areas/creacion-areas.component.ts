@@ -4,6 +4,8 @@ import { Area } from 'src/app/models/area';
 import { Persona } from 'src/app/models/persona';
 import { ServiciosAreaService } from 'src/app/services/servicios-area.service';
 import { Toast, ToastrService } from 'ngx-toastr';
+import { RolService } from 'src/app/services/rol.service';
+import { Rol } from 'src/app/models/rol';
 
 @Component({
   selector: 'creacion-areas',
@@ -15,22 +17,23 @@ export class CreacionAreasComponent implements OnInit {
 
 
   lista: Array<Persona>;
-
   area: Area;
-
   accion: string = '';
-
   responsables: Array<Persona>;
-
   personaSeleccionada: Persona;
+  destinatarios: Array<Rol>;
 
 
-
-  constructor(private servicios: ServiciosAreaService, private activatedRoute: ActivatedRoute, private router: Router, private toast: ToastrService) {
+  constructor(private servicios: ServiciosAreaService, 
+              private activatedRoute: ActivatedRoute, 
+              private router: Router, 
+              private toast: ToastrService,
+              private rolService: RolService) {
     this.lista = new Array<Persona>();
     this.area = new Area();
     this.personaSeleccionada = new Persona();
     this.responsables = new Array<Persona>();
+    this.destinatarios = new Array<Rol>();
   }
 
   ngOnInit(): void {
@@ -52,6 +55,21 @@ export class CreacionAreasComponent implements OnInit {
 
   }
 
+  cargarRol(){
+    this.rolService.getRoles().subscribe(
+      result=>{
+        var unRol = new Rol();
+        result.forEach((element: any) => {
+          Object.assign(unRol, element);
+          this.destinatarios.push(unRol);
+          unRol = new Rol();
+        });
+      },
+      error=>{
+
+      }
+    )
+  }
 
   listarPersonas() {
     this.servicios.getPersonas().subscribe(
