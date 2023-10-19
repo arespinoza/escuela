@@ -27,7 +27,7 @@
     <div class="  row">
       <div class="col-3"></div>
       <div class="col-sm-6 text-center">
-        <label for="titulo" style="color: white; font-size: 2em;">TITULO DEL ANUNCIO</label>
+        <label for="titulo" style="color: white; font-size: 2em;">Titulo del Anuncio</label>
         <input type="text" class="form-control input-noticia" id="titulo" name="titulo" [(ngModel)]="Anuncio.titulo"
           placeholder="INGRESE EL TITULO DEL ANUNCIO/NOTICIA" autocomplete="off"><br>
       </div>
@@ -37,8 +37,7 @@
     <div class="row">
       <div class="col-2"></div>
       <div class="col-sm-8 text-center">
-        <label for="descripcionCard" style="color: white; font-size: 2.0em;">DESCRIPCION BREVE DEL
-          ANUNCIO [mostrado en las CARDs]</label>
+        <label for="descripcionCard" style="color: white; font-size: 2.0em;">Descripción breve del Anuncio <small><small><small>[mostrado en las CARDs]</small></small></small></label>
         <textarea class="form-control" id="descripcionCard" name="descripcionCard" rows="4"
           [(ngModel)]="Anuncio.descripcionCard" placeholder="INGRESE BREVE DESCRIPCION PARA EL ANUNCIO/NOTICIA"></textarea><br>
       </div>
@@ -48,10 +47,9 @@
     <div class="row">
       <div class="col-2"></div>
       <div class="col-sm-8 text-center">
-        <label for="idDestinatarios" class="form-label col-sm-3" style="color: white; font-size: 2.0em;">Destinatarios</label>
-        <select class="form-select" name="destinatarios" [(ngModel)]="Anuncio.destinatarios" multiple
-          #destinatarioAnuncio="ngModel" name="destinatarioAnuncio" required
-          style="height: 90px;">
+        <label for="idDestinatarios" class="form-label" style="color: white; font-size: 2.0em;">Destinatarios <small><small><small>[Ctrl+Click en los Roles]</small></small></small></label>
+        <select class="form-select" name="destinatarios" [(ngModel)]="Anuncio.destinatarios" multiple size="7"
+          #destinatarioAnuncio="ngModel" name="destinatarioAnuncio">
           <option *ngFor="let destinatario of destinatarios" [ngValue]="destinatario">{{destinatario.nombreRol}}</option>
         </select>
           <br>
@@ -65,7 +63,7 @@
     <div class="text-center">
       <label for="descripcionCard" style="color: white; font-size: 2.0em;">DESCRIPCION EXTENDIDA DEL ANUNCIO</label>
     </div>
-    <quill-editor class="form-control ql-editor" [(ngModel)]="Anuncio.descripcion" name="descripcion" style="height: 800px;"></quill-editor>
+    <quill-editor class="form-control ql-editor" [(ngModel)]="Anuncio.descripcion" name="descripcion" style="height: 800px;" [modules]="quillEditorModules"></quill-editor>
 
     <div class="mx-3">
 

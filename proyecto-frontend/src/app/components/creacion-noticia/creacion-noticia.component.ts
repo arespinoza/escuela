@@ -10,6 +10,12 @@ import { NgForm } from '@angular/forms';
 import { Rol } from 'src/app/models/rol';
 import { RolService } from 'src/app/services/rol.service';
 
+import Quill from 'quill'
+import BlotFormatter from 'quill-blot-formatter'
+Quill.register('modules/blotFormatter', BlotFormatter)
+
+
+
 @Component({
   selector: 'creacion-noticia',
   templateUrl: './creacion-noticia.component.html',
@@ -39,6 +45,9 @@ export class CreacionNoticiaComponent implements OnInit {
   personaActual:any;
   destinatarios:Array<Rol>;
 
+  quillEditorModules = {};
+
+
   sessionStorage: Storage;
   constructor(private sanitizer: DomSanitizer, 
               private serviciosAnuncio: ServiciosAnuncioService,
@@ -52,6 +61,11 @@ export class CreacionNoticiaComponent implements OnInit {
     this.files = [];
     this.destinatarios = new Array<Rol>();
     this.sessionStorage = sessionStorage;
+
+    this.quillEditorModules = {
+      blotFormatter: {}
+    }
+
   }
 
   ngOnInit(): void {

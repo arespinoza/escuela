@@ -73,6 +73,10 @@ export class LoginService {
     return id;
   }
 
+  public getUserLoggedRol(){
+    var id = sessionStorage.getItem("rol");
+    return id;
+  }
 
   public getUsuarioByPersona(persona:Persona):Observable<any>{
     const httpOptions={

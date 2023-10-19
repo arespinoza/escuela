@@ -69,7 +69,7 @@ import { NgHttpLoaderModule } from 'ng-http-loader'; // <============
     EditorModule,
     OAuthModule.forRoot(),
 
-    QuillModule,
+    QuillModule.forRoot(),
 
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
