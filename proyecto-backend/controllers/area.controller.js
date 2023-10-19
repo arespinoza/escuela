@@ -99,7 +99,7 @@ areaCtrl.addAnuncio = async (req, res) =>{
 
 
 areaCtrl.getAnuncio = async (req, res) => {
-    var area = await Area.findById(req.params.idArea);
+    var area = await Area.findById(req.params.idArea).populate('responsables').populate({path: 'anuncios', populate: 'destinatarios'});
     var anuncio = area.anuncios.id(req.params.idAnuncio);
     res.json(anuncio);
 }

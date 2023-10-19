@@ -41,7 +41,7 @@ export class CreacionNoticiaComponent implements OnInit {
 
   sessionStorage: Storage;
   constructor(private sanitizer: DomSanitizer, 
-              private servicios: ServiciosAnuncioService,
+              private serviciosAnuncio: ServiciosAnuncioService,
               private activatedRoute: ActivatedRoute, 
               private router: Router, 
               private serviciosArea: ServiciosAreaService,
@@ -177,7 +177,7 @@ export class CreacionNoticiaComponent implements OnInit {
      anuncio.fechaDesde = this.date.toLocaleDateString();
     anuncio.recursos = this.files.map(file=>{return {base64:file.base64, type:file.type, name:file.name}});
     console.log(anuncio);
-    this.servicios.postAnuncio(anuncio, this.idArea).subscribe(
+    this.serviciosAnuncio.postAnuncio(anuncio, this.idArea).subscribe(
       result=>{
         //alert(result.msg);
         this.toast.success('El Anuncio se creo Correctamente', 'Nuevo Anuncio')
@@ -191,7 +191,7 @@ export class CreacionNoticiaComponent implements OnInit {
   }
 
   cargarAnuncio(idArea:any, idAnuncio:any){
-    this.servicios.getAnuncio(idArea,idAnuncio).subscribe(
+    this.serviciosAnuncio.getAnuncio(idArea,idAnuncio).subscribe(
       result=>{
         Object.assign(this.Anuncio, result);
         this.files = result.recursos;
@@ -212,7 +212,7 @@ export class CreacionNoticiaComponent implements OnInit {
     Anuncio.recursos = this.files.map(file => {
       return { base64: file.base64, type: file.type, name: file.name };
     });
-    this.servicios.putAnuncio(idArea,idAnuncio,Anuncio).subscribe(
+    this.serviciosAnuncio.putAnuncio(idArea,idAnuncio,Anuncio).subscribe(
       result=>{
         //alert(result.msg);
         this.toast.success('El Anuncio se Modifico Correctamente', 'Se Modifico el Anuncio')
@@ -232,7 +232,7 @@ export class CreacionNoticiaComponent implements OnInit {
   
 
   eliminarAnuncio(idArea:any, idAnuncio:any){
-    this.servicios.deleteAnuncio(idArea,idAnuncio).subscribe(
+    this.serviciosAnuncio.deleteAnuncio(idArea,idAnuncio).subscribe(
       result=>{
         //alert(result.msg);
         this.toast.error('El Anuncio se Elimino Correctamente', 'Elimidado')
